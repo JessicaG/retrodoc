@@ -65,6 +65,30 @@ room.on("presence_diff", diff => {
 
 room.join();
 
+let messageInput = document.getElementById("newFeelMessage");
+
+messageInput.addEventListener("keypress", (e) => {
+  if (e.keyCode == 13 && messageInput.value != "") {
+    room.push("message:new", messageInput.value)
+    messageInput.value = ""
+  };
+});
+
+let messageList = document.getElementById("feelMessageList");
+
+let renderMessage = (message) => {
+  let messageElement = document.createElement("li")
+  messageElement.innerHTML = `
+    <b>${message.user}</b>
+    <i>${formatTimestamp(message.timestamp)}</i>
+    <p>${message.body}</p>
+  `
+  messageList.appendChild(messageElement)
+  messageList.scrollTop = messageList.scrollHeight;
+};
+
+room.on("message:new", message => renderMessage(message));
+
 // Import local files
 //
 // Local files can be imported directly using relative

@@ -4,9 +4,9 @@
       Hello, <span id="user"><%= current_user(@conn).email %></span>!
     </div>
     <div class="col-md-8">
-      <h2>Messages</h2>
-      <input type="text" id="NewMessage" placeholder="Type and press enter..." class="form-control">
-      <ul id="MessageList" class="list-unstyled"></ul>
+      <h2>Feels</h2>
+      <input type="text" id="newFeelMessage" placeholder="Type and press enter..." class="form-control">
+      <ul id="feelMessageList" class="list-unstyled"></ul>
     </div>
     <div  class="col-md-4">
       <h2>Who’s Online</h2>
