@@ -11,12 +11,12 @@ defmodule Retrodoc.SessionControllerTest do
     :ok
   end
 
-  test "unauthenticated user requests login page" do
+  test "unauthenticated user requests login page", %{conn: conn} do
     conn = get conn, "/login"
     assert html_response(conn, 200) =~ "Login"
   end
 
-  test "unauthenticated user submits valid credentials" do
+  test "unauthenticated user submits valid credentials", %{conn: conn} do
     conn = post conn, "/login", session: @user_params
     assert html_response(conn, 302)
   end

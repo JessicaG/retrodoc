@@ -12,9 +12,9 @@ defmodule Retrodoc.RegistrationController do
 
     case Retrodoc.Registration.create(changeset, Retrodoc.Repo) do
       # sign in the user
-      {:ok, _user} ->
+      {:ok, user} ->
         conn
-        |> put_session(:current_user, changeset.id)
+        |> put_session(:current_user, user.id)
         |> put_flash(:info, "Your account was created")
         #|> redirect(to: page_path(conn, :index))
         |> redirect(to: "/")
