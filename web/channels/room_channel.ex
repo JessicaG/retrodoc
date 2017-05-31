@@ -1,6 +1,7 @@
 defmodule Retrodoc.RoomChannel do
   use Retrodoc.Web, :channel
   alias Retrodoc.Presence
+  alias Retrodoc.Post
 
   def join("room:january", _, socket) do
     send self(), :after_join
@@ -16,11 +17,21 @@ defmodule Retrodoc.RoomChannel do
   end
 
   def handle_in("message:new", message, socket) do
-    broadcast! socket, "message:new", %{
+    msg = %{
       user: socket.assigns.user,
       body: message,
       timestamp: :os.system_time(:milli_seconds)
     }
+
+    broadcast! socket, "message:new", msg
+    post_params = %{
+      username: msg[:user],
+      body: msg[:body]
+    }
+    changeset = Post.changeset(%Post{}, post_params)
+    Repo.insert(changeset)
+
+
     {:noreply, socket}
   end
 end

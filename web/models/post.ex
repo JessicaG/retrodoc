@@ -3,6 +3,7 @@ defmodule Retrodoc.Post do
 
   schema "posts" do
     field :body, :string
+    field :username, :string
 
     timestamps()
   end
@@ -13,6 +14,8 @@ defmodule Retrodoc.Post do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:body])
+    |> cast(params, [:username])
     |> validate_required([:body])
+    |> validate_required([:username])
   end
 end

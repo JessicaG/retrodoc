@@ -89,6 +89,14 @@ let renderMessage = (message) => {
 
 room.on("message:new", message => renderMessage(message));
 
+let dismissAction = document.querySelectorAll(".alert-dismiss");
+Array.prototype.slice.call(dismissAction)
+  .forEach(function(dismiss) {
+    dismiss.addEventListener('click', function(event) {
+      event.target.parentNode.style.display = 'none'
+    })
+  })
+
 // Import local files
 //
 // Local files can be imported directly using relative

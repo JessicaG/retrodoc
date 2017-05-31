@@ -18,6 +18,7 @@ defmodule Retrodoc.RegistrationController do
         |> put_flash(:info, "Your account was created")
         #|> redirect(to: page_path(conn, :index))
         |> redirect(to: "/")
+        |> clear_flash
 
       # show error message
       {:error, changeset} ->

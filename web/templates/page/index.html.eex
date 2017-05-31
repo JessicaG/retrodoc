@@ -1,12 +1,20 @@
 <%= if logged_in?(@conn) do %>
   <div class="row">
     <div class="col-md-12 alert alert-info">
-      Hello, <span id="user"><%= current_user(@conn).email %></span>!
+      Hello, <span id="user"><%= current_user(@conn).email %> </span>! <span class="alert-dismiss"> x</span>
     </div>
     <div class="col-md-8">
       <h2>Feels</h2>
       <input type="text" id="newFeelMessage" placeholder="Type and press enter..." class="form-control">
-      <ul id="feelMessageList" class="list-unstyled"></ul>
+      <ul id="feelMessageList" class="list-unstyled">
+        <%= for post <- @posts do %>
+        <li>
+          <b><%= post.username %></b>
+          <i><%= post.inserted_at %></i>
+          <p><%= post.body %></p>
+        </li>
+        <% end %>
+      </ul>
     </div>
     <div  class="col-md-4">
       <h2>Who’s Online</h2>

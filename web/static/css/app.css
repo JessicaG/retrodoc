@@ -15,3 +15,8 @@ a:hover {
   font-size: 40px;
 }
 
+.alert-dismiss {
+	float: right;
+	cursor: pointer;
+}
+
