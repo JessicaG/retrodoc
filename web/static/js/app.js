@@ -97,6 +97,52 @@ Array.prototype.slice.call(dismissAction)
     })
   })
 
+let reactionAdd = document.querySelectorAll('.reaction-add')
+Array.prototype.slice.call(reactionAdd)
+  .forEach(function(add) {
+    add.addEventListener('click', function(event) {
+      var input = event.target.parentNode.nextElementSibling
+      input.style.display = 'block'
+    })
+  })
+
+let reactionAddInput = document.querySelectorAll('.reaction-add-input')
+Array.prototype.slice.call(reactionAddInput)
+  .forEach(function(add) {
+    add.addEventListener('keyup', function(event) {
+      if (event.keyCode === 13) {
+        var emoji = event.target.value
+        var postId = event.target.dataset.postId
+        sendReaction(emoji, postId)
+        insertEmoji(emoji, postId)
+
+        event.target.parentNode.style.display = 'none'
+      }
+    })
+  })
+
+function insertEmoji(emoji, postId) {
+  var reactions = document.querySelector('ul.reactions')
+  var index = reactions.children.length - 2
+  var reaction = document.createElement('li')
+  var emojiSpan = document.createElement('span')
+  reaction.classList.add('reaction')
+  emojiSpan.classList.add('reaction-emoji')
+  emojiSpan.textContent = emoji
+  reaction.appendChild(emojiSpan)
+
+  reactions.insertBefore(reaction, reactions.children[index])
+}
+
+function sendReaction(emoji, postId) {
+  var body = { emoji: emoji, post_id: postId }
+  var csrf = document.getElementById('csrf-token')
+  console.log(csrf)
+  fetch('/reactions', { body: body, method: 'POST', headers: { 'x-csrf-token' : csrf } })
+    // .then(resp => resp.json())
+    .then(res => console.log(res))
+}
+
 // Import local files
 //
 // Local files can be imported directly using relative

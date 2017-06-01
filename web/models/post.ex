@@ -4,6 +4,7 @@ defmodule Retrodoc.Post do
   schema "posts" do
     field :body, :string
     field :username, :string
+    has_many :reactions, Retrodoc.Reaction
 
     timestamps()
   end

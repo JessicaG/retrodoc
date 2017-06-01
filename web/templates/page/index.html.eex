@@ -12,9 +12,23 @@
           <b><%= post.username %></b>
           <i><%= post.inserted_at %></i>
           <p><%= post.body %></p>
+          <ul class="reactions">
+          <%= for reaction <- post.reactions do %>
+            <li class="reaction">
+              <span class="reaction-emoji"><%= reaction.emoji %></span>
+            </li>
+          <% end %>
+            <li class="reaction">
+              <span class="reaction-add">+</span>
+            </li>
+            <li class="reaction reaction-add-input" style="display:none">
+              <input type="text" data-post-id="<%= post.id %>">
+            </li>
+          </ul>
         </li>
         <% end %>
       </ul>
+      <input type="hidden" id="csrf-token" value="<%= @csrf_token %>">
     </div>
     <div  class="col-md-4">
       <h2>Who’s Online</h2>

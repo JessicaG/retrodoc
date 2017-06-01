@@ -20,6 +20,9 @@ defmodule Retrodoc.Router do
     resources "/posts", PostController
     resources "/registrations", RegistrationController, only: [:new, :create]
 
+    post "/reactions", ReactionController, :create
+    delete "/reactions/:id", ReactionController, :delete
+
     get    "/login",  SessionController, :new
     post   "/login",  SessionController, :create
     delete "/logout", SessionController, :delete

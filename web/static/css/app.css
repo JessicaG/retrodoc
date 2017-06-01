@@ -20,3 +20,31 @@ a:hover {
 	cursor: pointer;
 }
 
+.reactions {
+	list-style: none;
+	display: flex;
+	margin: 0 0 5px;
+	padding: 0;
+}
+
+.reaction {
+	border-radius: 5px;
+	padding: 2px 5px;
+	background-color: #fefefe;
+	margin-right: 5px;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.reaction:hover {
+	background-color: #f0f0f0;
+}
+
+.reaction-add {
+	font-weight: bold;
+}
+
+.reaction-add-input input {
+	width: 2em;
+}
+
