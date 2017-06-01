@@ -28,7 +28,7 @@
         </li>
         <% end %>
       </ul>
-      <input type="hidden" id="csrf-token" value="<%= @csrf_token %>">
+      <%# <input type="hidden" id="csrf-token" value="<%= @csrf_token %>
     </div>
     <div  class="col-md-4">
       <h2>Who’s Online</h2>

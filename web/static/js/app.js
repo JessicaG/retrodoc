@@ -113,7 +113,7 @@ Array.prototype.slice.call(reactionAddInput)
       if (event.keyCode === 13) {
         var emoji = event.target.value
         var postId = event.target.dataset.postId
-        sendReaction(emoji, postId)
+        //sendReaction(emoji, postId)
         insertEmoji(emoji, postId)
 
         event.target.parentNode.style.display = 'none'
@@ -138,7 +138,7 @@ function sendReaction(emoji, postId) {
   var body = { emoji: emoji, post_id: postId }
   var csrf = document.getElementById('csrf-token')
   console.log(csrf)
-  fetch('/reactions', { body: body, method: 'POST', headers: { 'x-csrf-token' : csrf } })
+  //fetch('/reactions', { body: body, method: 'POST', headers: { 'x-csrf-token' : csrf } })
     // .then(resp => resp.json())
     .then(res => console.log(res))
 }
